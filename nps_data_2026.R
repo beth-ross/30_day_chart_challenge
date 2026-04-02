@@ -18,5 +18,11 @@ nps_state_econ_data <- clean_names(nps_state_econ_data_dirt)
 
 bls_data <- clean_names(bls_data_dirt)
 
-
+blm_data <- read_xlsx(paste0(ni_data_folder,"blm_econ_data_2024.xlsx")) |> 
+  filter(category != "Grand Total") |> 
+  mutate(total_econ_output = str_trim(total_econ_output, side = "right")) |> 
+  mutate(total_econ_output = parse_number(total_econ_output)) |> 
+  group_by(state) |> 
+  mutate(sum_output = sum(total_econ_output)) |> 
+  ungroup()
 
