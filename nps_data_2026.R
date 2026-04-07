@@ -26,3 +26,6 @@ blm_data <- read_xlsx(paste0(ni_data_folder,"blm_econ_data_2024.xlsx")) |>
   mutate(sum_output = sum(total_econ_output)) |> 
   ungroup()
 
+
+esa_num <- read.csv("species-listings-by-year-totals-report.csv") |> 
+  clean_names()
